@@ -1,0 +1,16 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "carousel.css";
+
+#login-mainpage {
+  color: #ffffff;
+  padding-bottom: 5px;
+  padding-right: 100px;
+  text-align: right;
+}
+
+ #login-mainpage a {
+  color: #ffffff;
+}

@@ -38,3 +38,5 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Add multi-json version 1.7.8 for AWS
+gem 'multi_json', '1.7.8'

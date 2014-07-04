@@ -1,27 +1,37 @@
-<h1>Listing surveys</h1>
+<h1>Your Surveys</h1>
+<div class="alert-success">
+	<p></p>
+</div>
+<br>
+<form class="form-group">
+  <input class="form-control" type="text" placeholder="Find a survey">
+</form>
 
-<table>
-  <thead>
-    <tr>
-      <th>Theme</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<a href="<%= url_for controller: 'surveys', action: 'new' %>">
+<button class="btn btn-primary btn-text">
+	<span class="glyphicon glyphicon-plus"></span>
+	 New Survey
+</button>
+</a>
 
-  <tbody>
-    <% @surveys.each do |survey| %>
-      <tr>
-        <td><%= survey.theme_id %></td>
-        <td><%= survey.description %></td>
-        <td><%= link_to 'Show', survey %></td>
-        <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-        <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+ <div>
+ <br />
+    <div class="list-group">
+ 	<% @surveys.each do |survey| %>
+ 		<div>    
+       	<a href="<%= url_for :controller => 'surveys', :action => 'edit', :id => survey.id %>" class="list-group-item">
+
+       		<h3><%=survey.name%></h3>
+          <%=survey.theme_id%>
+          <%=survey.description%>
+          <% #link_to "Delete", survey, method: :delete, data: { confirmation: 'Are you sure?' } %> 
+     	</a>
+     	<br />
+     	</div>
     <% end %>
-  </tbody>
-</table>
+    <div>
 
+ </div>
+ 
 <br>
 
-<%= link_to 'New Survey', new_survey_path %>

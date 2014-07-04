@@ -13,11 +13,12 @@
 
   <div class="field">
     <%= f.label :survey_id %><br>
-    <%= f.number_field :survey_id %>
+    <%= params[:survey_id] %>
   </div>
+  
   <div class="field">
     <%= f.label :type_id %><br>
-    <%= f.number_field :type_id %>
+    <%= f.collection_select :type_id, Type.all,:id, :description %>
   </div>
   <div class="field">
     <%= f.label :description %><br>

@@ -7,13 +7,23 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test "should get create" do
-    get :create
-    assert_response :success
+    chinsiongk = users(:one)
+    post :create, name: chinsiongk.name, password: 'Azerty?12'
+    
+    assert_redirected_to users_url
+    assert_equal chinsiongk.id, session[:user_id]
+  end
+
+  test "should get fail" do
+    chinsiongk = users(:one)
+    post :create, name: chinsiongk.name, password: 'wrong'
+    
+    assert_redirected_to users_url
   end
 
   test "should get destroy" do
-    get :destroy
-    assert_response :success
+    delete :destroy
+    assert_redirected_to(:controller => 'home')
   end
 
 end

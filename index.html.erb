@@ -1,0 +1,28 @@
+<h1>Your Surveys</h1>
+<div class="alert-success" ng-show="flash.getMessage()" ng-controller="SurveysCtrl">
+	<p>{{ flash.getMessage() }}</p>
+	<p>test message</p>
+</div>
+
+<form>
+  <input type="text" ng-model='newSurvey' placeholder="Enter a survey">
+  <input type="submit" value="Add">
+</form>
+
+ <div ng-controller="SurveysCtrl">
+    <ul>
+       	<li ng-repeat="survey in surveys">
+          {{ survey.theme_id }}, {{ survey.name }}, {{ survey.description }} 
+          <a href='/surveys/edit/{{survey.id}}' ng-click="" target="_Self">Details</a>  
+          <a href='' ng-click="deleteSurvey(survey.id,$index)">Delete</a>      
+          <a href='' ng-click="setSurvey(survey.id)">Set Path</a>    
+     	</li>
+    </ul>
+ </div>
+ 
+ {{ $route }}
+ {{ $location.path() }}
+{{ $routeParams }}
+<br>
+
+<%= link_to 'New Survey', new_survey_path, "target" => "_Self" %>

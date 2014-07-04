@@ -40,3 +40,9 @@ gem 'spring',        group: :development
 
 # Add multi-json version 1.7.8 for AWS
 gem 'multi_json', '1.7.8'
+
+# Add bootstrap form
+gem 'bootstrap_form'
+
+# Add AngularJS
+#gem 'angularjs-rails'

@@ -1,6 +1,19 @@
 WebInsight::Application.routes.draw do
-  get 'dashboard/index'
 
+  get 'signup/index'
+
+  resources :surveys
+  resources :questions
+  resources :choices
+  
+  scope :api do
+     resources :surveys, defaults: {format: :json}
+     resources :questions, defaults: {format: :json}
+	 resources :choices, defaults: {format: :json}
+  end
+  
+  get 'surveys/updatetheme/:id/:theme_id/:survey' => 'surveys#updatetheme'
+  
   get 'sessions/new'
 
   get 'sessions/create'
@@ -13,24 +26,28 @@ WebInsight::Application.routes.draw do
 
   get '/logout' => 'sessions#destroy'
 
-  resources :choices
+  get '/dashboard' => 'dashboard#index'
+  
+  get '/signup' => 'signup#login'
 
-  resources :questions
+  post 'surveys/getnextaction' => 'surveys#getnextaction'
 
   resources :types
-
-  resources :surveys
 
   resources :themes
 
   get 'home/index'
+
+#  get 'surveys/workflow' => 'surveys#workflow'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-    root 'home#index'
+  #  root 'home#index'
+  # root 'surveys#index'
+	root 'signup#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -80,4 +97,5 @@ WebInsight::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  
 end

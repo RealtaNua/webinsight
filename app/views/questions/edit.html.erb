@@ -1,6 +1,82 @@
-<h1>Editing question</h1>
+<h1>Edit Your Questions</h1>
 
-<%= render 'form' %>
+<%= bootstrap_form_for(@survey) do |f| %>
+	<% question_number = 1 %>
+	<% @questions.each do |question| -%> 
+		<% question_container_name = "question-container-"+question_number.to_s %>
+	
+	<div class="list-group toggle-bar">
+		<a id="a_question_<%= question_number%>" href="javascript:toggleDiv('<%= question_container_name %>','<%= question_number %>');" class="list-group-item"><%= question.description %></a>
+		<span id="question<%=question_number%>" class="glyphicon glyphicon-chevron-down pull-right arrow-up-down"></span>
+	</div>  
+	<div id="<%= question_container_name %>" class="question-container">	
+		<% if question.errors.any? %>
+			<div id="error_explanation">
+			<h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
 
-<%= link_to 'Show', @question %> |
-<%= link_to 'Back', questions_path %>
+			  <ul>
+			  <% question.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+			</ul>
+			</div>
+		<% end %>
+	<%= f.fields_for :questions, question do |q| -%>
+		<br />
+		<div>
+			<%= q.collection_select :type_id, Type.all,:id, :description, hide_label: true, required: true %>
+		</div>
+		<div>
+			<%= q.text_area :description, hide_label: true, placeholder: "Change Your Question", required: true  %>
+		</div>  
+   	
+		What're Your Choices?
+		<% number_increment = 1 %>
+		<%= q.fields_for :choices do |fa| %>
+			<div id="itemRows">
+				<div class="input-group small-spacing">	
+						<span class="input-group-addon"><%= number_increment %></span>
+						<%= fa.text_field :description, hide_label: true, placeholder: "Your answer...", required: true, "class" => "form-control" %>  
+				</div>
+			</div> 
+			<% number_increment += 1 %>  	
+		<% end %>
+		
+
+		<input type="hidden" id="id" name="question[id]" value="<%= params[:id] %>"></input>
+		<input type="hidden" id="survey_id" name="question[survey_id]" value="<%= params[:survey_id] %>"></input>
+		
+		<div class="btn-group pull-right" onclick="addRow(this.form)">
+			<button type="button" class="btn btn-primary vertical-divider">
+				<span class="glyphicon glyphicon-plus"></span> Add New Choice
+			</button>
+		</div>
+		<% question_number += 1 %>  
+			<div class="mid-spacing">&nbsp;</div>
+	<% end %> <!-- end f.fields_for :questions -->
+	</div> <!-- end div question-container -->
+	<% end %> <!-- end @question.each -->
+	
+	
+	<br /><br />
+  	<div class="actions">
+    	<%= f.submit value: "Update Questions", class: "btn btn-default" %>
+  	</div>
+<% end %>
+	<br /><br />
+<script type="text/javascript">
+$("#question-container-1").show();
+$("span#question1").toggleClass('glyphicon-chevron-down glyphicon-chevron-up', 200);
+$("a#a_question_1").addClass('active');
+
+
+
+function toggleDiv(divId, questionNumber) {
+   $("#"+divId).toggle();   
+	$('span#question'+questionNumber).toggleClass('glyphicon-chevron-down glyphicon-chevron-up', 200);
+	$("a#a_question_"+questionNumber).toggleClass('active', 200);
+}
+</script>
+
+<%= link_to 'Back To Survey', :controller=>'surveys',:action=>'show',:id=> params[:survey_id], "target" => "_Self" %>
+

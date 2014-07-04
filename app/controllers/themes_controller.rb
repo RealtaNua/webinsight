@@ -1,10 +1,13 @@
 class ThemesController < ApplicationController
+
+  layout "dashboard_template"
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
 
   # GET /themes
   # GET /themes.json
   def index
     @themes = Theme.all
+    @survey = Survey.find(params[:id])
   end
 
   # GET /themes/1

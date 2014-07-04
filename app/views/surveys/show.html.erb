@@ -1,14 +1,41 @@
+<h1>Preview Your Widget</h1>
+
 <p id="notice"><%= notice %></p>
+<br />
+<div id="survey-widget">
+	<div id= "survey-widget-header">Welcome</div>
+	<div id="survey-widget-content">
+	<%= form_tag(survey_path, method: "GET") do %>
+	<div id="survey-widget-question">
+		<p><%= @question.description %></p>
+	</div>
 
-<p>
-  <strong>Theme:</strong>
-  <%= @survey.theme_id %>
-</p>
+		<% @question.choices.each do |choice| %>
+		<div class="survey-widget-choice">
+			<p><%= radio_button_tag(:choice_id, choice.id) %>
+				<%= label_tag(:choice_description, choice.description) %>
+			</p>
+		</div>
+		<% end %>
+		<%= hidden_field_tag(:id, @survey.id) %>
+		<%= hidden_field_tag(:before_question_id, @question.id) %>		
+		<div class="survey-widget-choice">
+		<%= submit_tag("Next", "class" => 'pull-right') %>
+		</div>
+	<% end %>
+	</div>
+</div>
+<br />
 
-<p>
-  <strong>Description:</strong>
-  <%= @survey.description %>
-</p>
+<div class="btn-group" id="survey-widget-done-button">
+	<a href="<%= surveys_path %>">
+	<button type="button" class="btn btn-primary vertical-divider pull-right">
+		And... Done
+	</button>
+	</a>
+</div>
 
+<br />
+<br />
 <%= link_to 'Edit', edit_survey_path(@survey) %> |
 <%= link_to 'Back', surveys_path %>

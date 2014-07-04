@@ -1,1 +1,104 @@
 @import "bootstrap";
+
+.vertical-divider {
+height: 100%;
+margin: 15px 0 0 0;
+
+}
+
+.small-spacing {
+	margin-top: 10px;
+}
+
+.mid-spacing {
+	margin-top: 30px;
+}
+
+.survey-row {
+	background-color: #eee;
+	padding:10px;
+}
+
+.btn-text {
+	color: #ffffff;
+}
+
+.question-container {
+	margin-bottom: 40px;
+	display: none;
+}
+
+.arrow-up-down {
+	top: -30px;
+	right: 20px;
+}
+
+.toggle-bar .list-group-item {
+	height: 60px;
+	padding-top:20px;
+}
+
+.thumbnail {
+	height: 450px;
+}
+
+.thumbnail:hover {
+	border-box: rgba(82, 168, 236, 0.8);
+	box-shadow: 0 0 8px rgba(82, 168, 236, 0.6);
+	outline: 0 none;
+}
+
+#survey-widget {
+	width: 350px;
+/*	height: 300px; */
+	border: 2px solid gray;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+#survey-widget-header {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	height: 30px;
+	background-color: #c0c0c0;
+/*	margin-bottom: 20px; */
+	padding-left: 10px;
+	color: #ffffff;
+}
+
+.survey-widget-choice {
+	height: 50px;
+	background-color: #F0F0F0;
+	padding: 15px 10px;
+	margin-top: 1px;
+}
+
+.align-right {
+	text-align: right;
+}
+
+#survey-widget-done-button {
+	width: 350px;
+}
+
+#survey-widget-question {
+	height: 50px;
+	padding: 15px 10px;
+	
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0.48, #F2F2F2),
+		color-stop(0.82, #DBDBDB)
+	);
+	background-image: -o-linear-gradient(bottom, #F2F2F2 48%, #DBDBDB 82%);
+	background-image: -moz-linear-gradient(bottom, #F2F2F2 48%, #DBDBDB 82%);
+	background-image: -webkit-linear-gradient(bottom, #F2F2F2 48%, #DBDBDB 82%);
+	background-image: -ms-linear-gradient(bottom, #F2F2F2 48%, #DBDBDB 82%);
+	background-image: linear-gradient(to bottom, #F2F2F2 48%, #DBDBDB 82%);	
+}
+
+#survey-widget-content {
+	/*padding: 0 10px;*/
+}

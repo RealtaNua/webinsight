@@ -1,5 +1,40 @@
-<h1>New question</h1>
+<h1>Great! Now Let's Set Some Questions</h1>
 
-<%= render 'form' %>
+<%= bootstrap_form_for(@question) do |f| %>   
+    	<br />
+    	<div>
+		What Type Of Question?
+    	<%= f.collection_select :type_id, Type.all,:id, :description, hide_label: true, required: true %>
+  	</div>
+  	<div>
+  		What's The Question?
+    	<%= f.text_area :description, hide_label: true, placeholder: "Your Question", required: true  %>
+  	</div>  
 
-<%= link_to 'Back', questions_path %>
+
+   <%= f.fields_for :choices do |fa| %>
+
+    What're Your Choices?
+	<div id="itemRows">
+	  <div class="input-group small-spacing">
+		<span class="input-group-addon" value="">1</span>
+        <%= fa.text_field :description, hide_label: true, placeholder: "Your answer...", class: "form-control", required: true %>
+      </div>
+	</div>   
+   <% end %>
+
+	<div class="btn-group pull-right" onclick="addRow(this.form)">
+		<button type="button" class="btn btn-primary vertical-divider">
+			<span class="glyphicon glyphicon-plus"></span> Add New Choice
+		</button>
+	</div>
+	<input type="hidden" id="survey_id" name="question[survey_id]" value="<%= params[:survey_id] %>"></input>
+	<br />
+  	<div class="actions">
+    	<%= f.submit %>
+  	</div>
+
+<% end %>
+<br />
+
+<%= link_to 'Back To Survey', :controller=>'surveys',:action=>'show',:id=> @survey.id %>

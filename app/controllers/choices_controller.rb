@@ -1,10 +1,13 @@
 class ChoicesController < ApplicationController
   before_action :set_choice, only: [:show, :edit, :update, :destroy]
 
+  respond_to :json, :html
+  
   # GET /choices
   # GET /choices.json
   def index
     @choices = Choice.all
+    respond_with @choices
   end
 
   # GET /choices/1

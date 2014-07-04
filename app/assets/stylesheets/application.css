@@ -15,4 +15,6 @@
  *= require home
  *= require login
  *= require dashboard
+ *= require rails_bootstrap_forms
+ *= require signup
  */

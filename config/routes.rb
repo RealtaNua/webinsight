@@ -1,5 +1,7 @@
 WebInsight::Application.routes.draw do
 
+  resources :leads
+
   get 'signup/index'
 
   resources :surveys
@@ -29,6 +31,8 @@ WebInsight::Application.routes.draw do
   get '/dashboard' => 'dashboard#index'
   
   get '/signup' => 'signup#login'
+  
+  post '/signup/email' => 'signup#email'
 
   post 'surveys/getnextaction' => 'surveys#getnextaction'
 

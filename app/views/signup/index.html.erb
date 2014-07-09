@@ -1,21 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>WebInsight</title>
-
-    <!-- Add custom CSS here -->
-    <link href="stylesheets/landing-page.css" rel="stylesheet">
-
-</head>
-
-<body>
-
+<a id="home"></a>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -31,9 +15,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#about">About</a>
+                    <li><a class="scroller" href="#" data-el="#benefit">About</a>
                     </li>
-                    <li><a href="#contact">Sign Up</a>
+                    <li><a class="scroller" href="#" data-el="#notify">Notify</a>
                     </li>
                 </ul>
             </div>
@@ -53,13 +37,13 @@
                 <div class="col-lg-12">
                     <div class="intro-message"">
 						<div class="pull-left intro-text-left" style="">
-							<h1>Don't Let Your Visitors Get Lost</h1>
-							<h3 class="pull-left">Retain visitors. Get conversions.</h3>
-							<div class="div-landing-page-learn">
-							<a class="btn btn-primary btn-landing-page scroller"  data-el="#benefit">
-								Learn More
-							</a>
+							<h1>Improve visitor retention & conversions</h1>
+							<!--<h3 class="pull-left">Improve satisfaction. Get conversions.</h3> -->
 							
+							<h3 class="pull-left">Engage with customers even when you're not around</h3>
+														
+							</p>
+							<div class="div-landing-page-learn">							
 							<a class="btn btn-warning btn-landing-page small-spacing scroller" data-el="#notify">
 								Get Notified
 							</a>
@@ -141,7 +125,7 @@
                     <div class="clearfix"></div>
                     <h2 class="section-heading"> Plug-&-Play Simplicity</h2>
                     <p class="lead">
-                    	Automated traffic analysis and curated options means no worries about what and where to place help messages.
+                    	Automated traffic analysis and message suggestions means no worries about what and where to place your messages.
                     	Get up and running in minutes and see results from day one.
                 	</p>
                 </div>
@@ -157,7 +141,7 @@
     </div>
     <!-- /.content-section-a -->
 
-
+<!--
     <div class="banner">
 
         <div class="container">
@@ -168,22 +152,22 @@
                 </div>
                 <div class="col-lg-6">
                     <ul class="list-inline banner-social-buttons">
-                        <li><a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                        <li><a href="https://twitter.com/SBootstrap" class=""><%= image_tag("icon-twitter.png", "class" => "img-responsive")%></a>
                         </li>
-                        <li><a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                        <li><a href="https://github.com/IronSummitMedia/startbootstrap"><%= image_tag("icon-facebook.png", "class" => "img-responsive")%></a>
                         </li>
-                        <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                        <li><a href="#" class=""><%= image_tag("icon-linkedin.png", "class" => "img-responsive")%></a>
                         </li>
                     </ul>
                 </div>
             </div>
 
         </div>
+-->
         <!-- /.container -->
 
-    </div>
+<!--    </div> -->
     <!-- /.banner -->
-
 
 	<div class="intro-message" style="padding-top:5%;background-color:orange; height: 500px; width: 100%;color:white;text-align:center;">
 		<h1>Like What You See?</h1>
@@ -206,13 +190,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="list-inline">
-                        <li><a href="#" data-el="#benefit">Home</a>
+                        <li><a class="scroller" href="#" data-el="#home">Home</a>
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
-                        <li><a href="#" data-el="#benefit">About</a>
+                        <li><a class="scroller" href="#" data-el="#benefit">About</a>
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
-                        <li><a href= "#" data-el="#notify">Notify</a>
+                        <li><a class="scroller" href= "#" data-el="#notify">Notify</a>
                         </li>
                     </ul>
                     <p class="copyright text-muted small">Copyright &copy; WebInsight 2014. All Rights Reserved</p>
@@ -250,6 +234,3 @@
 		$(".scroller").on("click", ScrollPage);
 	});
 	</script>
-</body>
-
-</html>

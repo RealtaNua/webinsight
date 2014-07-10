@@ -1,3 +1,6 @@
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "86a3ab73-7e72-418d-9717-5932662634d6", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 
 <a id="home"></a>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -9,7 +12,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://webinsight.co"><%= image_tag("logo_small.png") %></a>
+                <a class="navbar-brand" href="http://versable.co"><%= image_tag("logo_versable4.png", "class" => "logo-top") %></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -27,10 +30,21 @@
     </nav>
 
     <div class="intro-header">
-    <div class="">
     <% if flash[:notice] %>
-		<div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
-	<% end %>
+		<div class="alert alert-success" role="alert">
+			<h4>
+			<%= flash[:notice] %>
+			</h4><br />
+			Spread The Word: <br />
+			<span class='st_sharethis_large' displayText='ShareThis'></span>
+	  		<span class='st_facebook_large' displayText='Facebook'></span>
+	  		<span class='st_twitter_large' displayText='Tweet'></span>
+	  		<span class='st_linkedin_large' displayText='LinkedIn'></span>
+	  		<span class='st_pinterest_large' displayText='Pinterest'></span> 
+		</div>
+	<% end %>    
+    <div class="">
+
         <div class="container">
 
             <div class="row">
@@ -59,6 +73,23 @@
         <!-- /.container -->
 	</div>
     </div>
+    <!--
+<div class="content-section-b">
+<div class="container">
+	<h3 class="pull-left">
+		Like It If You Like It
+	</h3>
+	<div class="pull-right">
+	  <span class='st_sharethis_large' displayText='ShareThis'></span>
+	  <span class='st_facebook_large' displayText='Facebook'></span>
+	  <span class='st_twitter_large' displayText='Tweet'></span>
+	  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+	  <span class='st_pinterest_large' displayText='Pinterest'></span>
+	  <span class='st_email_large' displayText='Email'></span>
+   </div>
+</div>
+</div>  
+-->  
     <!-- /.intro-header -->
 	<a id="benefit"></a>
     <div class="content-section-a">
@@ -80,7 +111,7 @@
                     </p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2-custom col-sm-6">
-                <%= image_tag("widget_pic_shop.png", "class" => "img-responsive landing-widget-full") %>                    
+                <%= image_tag("widget_pic_shop_v.png", "class" => "img-responsive landing-widget-full") %>                    
                 </div>
             </div>
 
@@ -106,7 +137,7 @@
                     </p>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                <%= image_tag("widget_email_signup.png", "class" => "img-responsive") %>
+                <%= image_tag("widget_email_signup_v.png", "class" => "img-responsive") %>
                 </div>
             </div>
         </div>
@@ -179,7 +210,13 @@
 				<input type="email" placeholder="Enter Your Email Here..." name="email" class="form-control pull-left" style="width:80%;border-radius:0px"></input>
 				<input type="hidden" name="channel" value="landing page 1"></input>
 				<input type="submit" value="Notify Me" class="btn btn-success pull-left" style="border-radius:0px"></input>
-			<% end %>
+			<% end %>			
+						<h4 class="vertical-spacing">Spread The Word:</h4>
+			<span class='st_sharethis_large' displayText='ShareThis'></span>
+	  		<span class='st_facebook_large' displayText='Facebook'></span>
+	  		<span class='st_twitter_large' displayText='Tweet'></span>
+	  		<span class='st_linkedin_large' displayText='LinkedIn'></span>
+	  		<span class='st_pinterest_large' displayText='Pinterest'></span> 
 		</div>
 	</div>
 	<a id="notify"></a>
@@ -199,7 +236,7 @@
                         <li><a class="scroller" href= "#" data-el="#notify">Notify</a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted small">Copyright &copy; WebInsight 2014. All Rights Reserved</p>
+                    <p class="copyright text-muted small">Copyright &copy; Versable.co 2014. All Rights Reserved</p>
                 </div>
             </div>
         </div>

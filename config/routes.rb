@@ -32,6 +32,8 @@ Versable::Application.routes.draw do
   
   get '/signup' => 'signup#login'
   
+  get '/thanks-for-signing-up' => 'signup#index'
+  
   post '/signup/email' => 'signup#email'
 
   post 'surveys/getnextaction' => 'surveys#getnextaction'

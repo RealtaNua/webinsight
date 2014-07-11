@@ -1,4 +1,4 @@
-WebInsight::Application.routes.draw do
+Versable::Application.routes.draw do
 
   resources :leads
 

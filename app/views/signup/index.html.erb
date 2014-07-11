@@ -30,7 +30,13 @@
     </nav>
 
     <div class="intro-header">
-    <% if flash[:notice] %>
+    <% if flash[:error] %>
+    	<div class="alert alert-danger" role="alert">
+    		<h4>
+    		<%=flash[:error] %>
+    		</h4>
+    	</div>
+    <% elsif flash[:notice] %>
 		<div class="alert alert-success" role="alert">
 			<h4>
 			<%= flash[:notice] %>
@@ -43,6 +49,7 @@
 	  		<span class='st_pinterest_large' displayText='Pinterest'></span> 
 		</div>
 	<% end %>    
+	
     <div class="">
 
         <div class="container">

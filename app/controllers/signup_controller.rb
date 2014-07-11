@@ -11,7 +11,7 @@ class SignupController < ApplicationController
   	    @lead.save
   	    
   	    flash[:notice] = "Thanks, we'll keep you in the loop!"
-  	    redirect_to action: 'index'
+  	    redirect_to '/'
   end
   
 end

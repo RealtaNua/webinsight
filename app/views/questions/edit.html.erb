@@ -29,29 +29,33 @@
 		<div>
 			<%= q.text_area :description, hide_label: true, placeholder: "Change Your Question", required: true  %>
 		</div>  
-   	
-		What're Your Choices?
-		<% number_increment = 1 %>
-		<%= q.fields_for :choices do |fa| %>
-			<div id="itemRows">
-				<div class="input-group small-spacing">	
-						<span class="input-group-addon"><%= number_increment %></span>
-						<%= fa.text_field :description, hide_label: true, placeholder: "Your answer...", required: true, "class" => "form-control" %>  
-				</div>
-			</div> 
-			<% number_increment += 1 %>  	
+   		
+   		<% if question.choices.count > 0 %>
+			What're Your Choices?
+			<% number_increment = 1 %>
+			<%= q.fields_for :choices do |fa| %>
+				<div id="itemRows">
+					<div class="input-group small-spacing">	
+							<span class="input-group-addon"><%= number_increment %></span>
+							<%= fa.text_field :description, hide_label: true, placeholder: "Your answer...", required: true, "class" => "form-control" %>  
+					</div>
+				</div> 
+				<% number_increment += 1 %>  	
+			<% end %>
+			
+			<input type="hidden" id="id" name="question[id]" value="<%= params[:id] %>"></input>
+			<input type="hidden" id="survey_id" name="question[survey_id]" value="<%= params[:survey_id] %>"></input>
+		
+			<div class="btn-group pull-right" onclick="addRow(this.form)">
+				<button type="button" class="btn btn-primary vertical-divider">
+					<span class="glyphicon glyphicon-plus"></span> Add New Choice
+				</button>
+			</div>
+		
 		<% end %>
-		
 
-		<input type="hidden" id="id" name="question[id]" value="<%= params[:id] %>"></input>
-		<input type="hidden" id="survey_id" name="question[survey_id]" value="<%= params[:survey_id] %>"></input>
 		
-		<div class="btn-group pull-right" onclick="addRow(this.form)">
-			<button type="button" class="btn btn-primary vertical-divider">
-				<span class="glyphicon glyphicon-plus"></span> Add New Choice
-			</button>
-		</div>
-		<% question_number += 1 %>  
+		<% question_number += 1 %>  		
 			<div class="mid-spacing">&nbsp;</div>
 	<% end %> <!-- end f.fields_for :questions -->
 	</div> <!-- end div question-container -->

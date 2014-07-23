@@ -1,5 +1,34 @@
 <h1>Create a new survey</h1>
 
-<%= render 'form' %>
+<%= bootstrap_form_for(@survey) do |f| %>
+  <% if @survey.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+
+      <ul>
+      <% @survey.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :theme_id, 'Your Survey Theme' %><br>
+    <%= f.collection_select :theme_id,Theme.all, :id, :description, hide_label: true %>
+  </div>
+  <div class="field">
+    <%= f.label :name, 'Give It A Name' %><br>
+    <%= f.text_field :name, hide_label: true, placeholder: "Your Survey Name", required: true %>
+  </div>  
+  <div class="field">
+    <%= f.label :description, "What's It About?" %><br>
+    <%= f.text_area :description, hide_label: true, placeholder: "Your Survey Description", required: true %>
+  </div>
+  <div class="actions">
+    <%= f.submit  "Next" %>
+  </div>
+<% end %>
+
 <br />
 <%= link_to 'Back to Survey', surveys_path %>

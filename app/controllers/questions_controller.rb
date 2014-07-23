@@ -21,7 +21,8 @@ class QuestionsController < ApplicationController
   def new
     @question = Question.new
     #@choice = Choice.new
-    #@survey = Survey.find(params[:survey_id])
+    
+    @survey = Survey.find(params[:survey_id])
     
     if @survey
        @question.survey_id = @survey.id

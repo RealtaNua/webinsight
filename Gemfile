@@ -46,3 +46,6 @@ gem 'bootstrap_form'
 
 # Add AngularJS
 #gem 'angularjs-rails'
+
+# Add redcarpet for Markdown
+gem 'redcarpet'

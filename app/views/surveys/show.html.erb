@@ -7,15 +7,20 @@
 	<div id="survey-widget-content">
 	<%= form_tag(survey_path, method: "GET") do %>
 	<div id="survey-widget-question">
-		<p><%= @question.description %></p>
+		<%= markdown(@question.description) %>
 	</div>
-
-		<% @question.choices.each do |choice| %>
-		<div class="survey-widget-choice">
-			<p><%= radio_button_tag(:choice_id, choice.id) %>
-				<%= label_tag(:choice_description, choice.description) %>
-			</p>
-		</div>
+		<% if @question.choices.count > 0 %>
+			<% @question.choices.each do |choice| %>
+			<div class="survey-widget-choice survey-widget-unclicked">
+				<%= radio_button_tag(:choice_id, choice.id) %>
+					<%= label_tag(:choice_description, choice.description) %>
+				
+			</div>
+			<% end %>
+		<% else %>
+			<div class="survey-widget-textfield">
+				<input class="form-control" type="text" required></input>
+			</div>
 		<% end %>
 		<%= hidden_field_tag(:id, @survey.id) %>
 		<%= hidden_field_tag(:before_question_id, @question.id) %>		
@@ -28,7 +33,7 @@
 <br />
 
 <div class="btn-group" id="survey-widget-done-button">
-	<a href="<%= surveys_path %>">
+	<a href="/surveys?notice=The survey has been updated">
 	<button type="button" class="btn btn-primary vertical-divider pull-right">
 		And... Done
 	</button>

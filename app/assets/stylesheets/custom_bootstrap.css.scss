@@ -31,6 +31,7 @@ margin: 15px 0 0 0;
 .arrow-up-down {
 	top: -30px;
 	right: 20px;
+	z-index: 30;
 }
 
 .toggle-bar .list-group-item {
@@ -65,14 +66,23 @@ margin: 15px 0 0 0;
 	padding-left: 10px;
 	color: #ffffff;
 }
-
+/*
 .survey-widget-choice {
 	height: 50px;
-	background-color: #F0F0F0;
 	padding: 15px 10px;
 	margin-top: 1px;
+	width:100%;
+	text-align:left;	
 }
 
+.survey-widget-unclicked {
+	background-color: #F0F0F0;	
+}
+
+.survey-widget-clicked {
+	background-color: #A8A8A8;
+}
+*/
 .align-right {
 	text-align: right;
 }
@@ -82,7 +92,6 @@ margin: 15px 0 0 0;
 }
 
 #survey-widget-question {
-	height: 50px;
 	padding: 15px 10px;
 	
 	background-image: -webkit-gradient(
@@ -101,4 +110,44 @@ margin: 15px 0 0 0;
 
 #survey-widget-content {
 	/*padding: 0 10px;*/
+	background-color: #f8f8f8;
+}
+
+.survey-widget-textfield {
+	height: 50px;
+	background-color: #F0F0F0;
+	padding: 2% 2.5%;
+	margin-top: 1px;
+}
+
+.process-arrow-normal {
+	background: url(image_path('process_grey_arrow.png')) no-repeat left center border-box;
+	background-size: contain;
+	height: 50px;
+	width: 14%;
+	margin-right: -3.5%;
+	float:left;
+}
+
+.process-arrow-active {
+	background: url(image_path('process_arrow_active.png')) no-repeat left center border-box;
+	background-size: contain;
+	height: 50px;
+	width: 14%;
+	margin-right: -3.5%;
+	float:left;	
+}
+
+.process-arrow-innerdiv {
+	padding-left: 34%;
+	padding-top: 9.25%;
+	color: white;
+}	
+
+.glyphicon-chevron-up {
+	color:#ffffff;
+}
+
+a:active {
+	background-color: #A8A8A8;
 }

@@ -1,10 +1,15 @@
 <h1>Choose Your Theme</h1>
 
-
+<ol class="breadcrumb" style="height: 65px;">
+<a href="/surveys"><div class="process-arrow-normal"><li class="process-arrow-innerdiv">Survey</li></div></a>
+<a href="/questions/"><div class="process-arrow-normal"><li class="process-arrow-innerdiv">Questions</li></div></a>
+<a href="/themes/"><div class="process-arrow-active"><li class="process-arrow-innerdiv">Theme</li></div></a>
+<a href="/preview/"><div class="process-arrow-normal"><li class="process-arrow-innerdiv">Preview</li></div></a>
+</ol>
 
 <div class="row">
     <% @themes.each do |theme| %>
-    <a href="<%= url_for(:controller => 'surveys', :action => 'updatetheme', :survey => @survey, :id => params[:id], :theme_id => theme.id) %>">
+    <a href="<%= url_for(:controller => 'themes', :action => 'updatesurveytheme', :id => params[:id], :theme_id => theme.id) %>">
   <div class="col-sm-6 col-md-4 theme-thumbnail">
     <div class="thumbnail">
       <img data-src="holder.js/400x300" alt="...">

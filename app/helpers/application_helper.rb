@@ -23,5 +23,32 @@ module ApplicationHelper
       content_for?(:meta_description) ? content_for(:meta_description) : APP_CONFIG['meta_description']
     end
   end  
+  
+  def markdown(text)
+    options = {
+      filter_html:     true,
+      hard_wrap:       true, 
+      link_attributes: { rel: 'nofollow', target: "_blank" },
+      space_after_headers: true, 
+      fenced_code_blocks: true
+    }
 
+    extensions = {
+      autolink:           true,
+      superscript:        true,
+      disable_indented_code_blocks: true
+    }
+
+    renderer = Redcarpet::Render::HTML.new(options)
+    markdown = Redcarpet::Markdown.new(renderer, extensions)
+
+    markdown.render(text).html_safe
+  end
+  
+  def get_url(action,url_id)
+  	if(action == "url")
+  		@url = Url.find(url_id)
+  		@url.url
+  	end
+  end
 end

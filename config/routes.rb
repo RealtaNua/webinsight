@@ -1,5 +1,13 @@
 Versable::Application.routes.draw do
 
+  resources :urls
+
+  resources :responses
+
+  get 'widgets/index'
+
+  get 'testwidgets/index'
+
   resources :leads
 
   get 'signup/index'
@@ -14,7 +22,9 @@ Versable::Application.routes.draw do
 	 resources :choices, defaults: {format: :json}
   end
   
-  get 'surveys/updatetheme/:id/:theme_id/:survey' => 'surveys#updatetheme'
+  get 'themes/updatesurveytheme/:id/:theme_id' => 'themes#updatesurveytheme'
+  
+  #get 'surveys/updatetheme/:id/:theme_id/:survey' => 'surveys#updatetheme'
   
   get 'sessions/new'
 
@@ -43,6 +53,12 @@ Versable::Application.routes.draw do
   resources :themes
 
   get 'home/index'
+  
+  get '/widgets/index' => 'widgets#index'
+
+  get '/widgets/show/' => 'widgets#show'
+  
+  post '/widgets/show/' => 'widgets#show'
 
 #  get 'surveys/workflow' => 'surveys#workflow'
 

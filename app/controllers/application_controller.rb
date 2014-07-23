@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
 	when "questions updated"
 		redirect_to :controller=>'themes',:action=>'index', :id=> @survey.id
 	when "theme chosen"
-		redirect_to :controller=>'surveys',:action=>'show',:id=> @survey.id		
+		redirect_to :controller=>'surveys',:action=>'show',:id=> @survey.id	, :survey => @survey	
     end
     
   end

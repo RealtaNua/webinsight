@@ -1,0 +1,26 @@
+<h1>Testwidgets#index</h1>
+<p>Find me in app/views/testwidgets/index.html.erb</p>
+
+<div id="survey-widget">
+	<div id= "survey-widget-header">Welcome</div>
+	<div id="survey-widget-content">
+	<%= form_tag(survey_path, method: "GET") do %>
+	<div id="survey-widget-question">
+		<p><%= @question.description %></p>
+	</div>
+
+		<% @question.choices.each do |choice| %>
+		<div class="survey-widget-choice">
+			<p><%= radio_button_tag(:choice_id, choice.id) %>
+				<%= label_tag(:choice_description, choice.description) %>
+			</p>
+		</div>
+		<% end %>
+		<%= hidden_field_tag(:id, @survey.id) %>
+		<%= hidden_field_tag(:before_question_id, @question.id) %>		
+		<div class="survey-widget-choice">
+		<%= submit_tag("Next", "class" => 'pull-right') %>
+		</div>
+	<% end %>
+	</div>
+</div>

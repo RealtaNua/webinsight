@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707095806) do
+ActiveRecord::Schema.define(version: 20140722101104) do
 
   create_table "choices", force: true do |t|
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "question_id"
+    t.string   "next_action"
+    t.integer  "next_action_id"
   end
 
   create_table "leads", force: true do |t|
@@ -36,6 +38,15 @@ ActiveRecord::Schema.define(version: 20140707095806) do
     t.integer  "before_question_id"
     t.integer  "after_question_id"
   end
+
+  create_table "responses", force: true do |t|
+    t.integer  "choice_id"
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "responses", ["choice_id"], name: "index_responses_on_choice_id", using: :btree
 
   create_table "surveys", force: true do |t|
     t.integer  "theme_id"
@@ -58,6 +69,15 @@ ActiveRecord::Schema.define(version: 20140707095806) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "urls", force: true do |t|
+    t.integer  "choice_id"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "urls", ["choice_id"], name: "index_urls_on_choice_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"

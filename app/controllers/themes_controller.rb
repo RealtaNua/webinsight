@@ -40,12 +40,30 @@ class ThemesController < ApplicationController
     end
   end
 
+  def updatesurveytheme  	
+  	@survey = Survey.find(params[:id])
+  	
+  	if @survey.update_attribute(:theme_id, params[:theme_id])
+  		session[:survey_status] = "theme chosen"
+  		
+        #Call workflow action in applicationController
+        surveyWorkflow            		
+  	end
+  end
+
   # PATCH/PUT /themes/1
   # PATCH/PUT /themes/1.json
   def update
+  		
     respond_to do |format|
       if @theme.update(theme_params)
-        format.html { redirect_to @theme, notice: 'Theme was successfully updated.' }
+        format.html { 
+  		 	
+  		 	session[:survey_status] = "theme updated"
+  		 	
+  		 	#Call workflow action in applicationController
+        	surveyWorkflow                
+        }
         format.json { render :show, status: :ok, location: @theme }
       else
         format.html { render :edit }

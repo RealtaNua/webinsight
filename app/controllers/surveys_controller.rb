@@ -3,7 +3,7 @@ class SurveysController < ApplicationController
 
   layout "dashboard_template"
 
-  before_action :set_survey, only: [:show, :edit, :update, :destroy]
+  before_action :set_survey, only: [:updatetheme, :show, :edit, :update, :destroy]
 
 
    respond_to :json, :html
@@ -27,13 +27,18 @@ class SurveysController < ApplicationController
     #@questions = Question.find_by(survey_id: @survey.id)  	
     #@questions = Question.where(["survey_id = ?", @survey.id])
     
-    if(params[:before_question_id])
-    	question_array = Question.where(["survey_id = ? and before_question_id = ?", params[:id], params[:before_question_id] ])
+    if(params[:choice_id])
+    	@choice = Choice.find(params[:choice_id])
+    	if @choice.next_action == "question"		
+	    	question_array = Question.where(["survey_id = ? and id = ?", params[:id], @choice.next_action_id ])
+	    end
+	elsif(params[:before_question_id])
+		question_array = Question.where(["survey_id = ? and before_question_id = ?", params[:id], params[:before_question_id] ])
     else
 	   	question_array = Question.where(["survey_id = ? and before_question_id = ?", params[:id], "0"])
     end
     @question = question_array.first
-	#@choices  = Choice.where(["question_id = ?", @question.id])
+#@choices  = Choice.where(["question_id = ?", @question.id])
 	
 #    for question in @questions
 #    	@choices = Choice.where(["question_id = ?", question.id])
@@ -66,15 +71,17 @@ class SurveysController < ApplicationController
   def create
     @survey = Survey.new(survey_params)
 
+
    # respond_to do |format|
       if @survey.save
        # format.html { redirect_to @survey, notice: 'Survey was successfully created.' }
        # format.json { render :show, status: :created, location: @survey }
-        
+
         session[:survey_status] = "survey created"
 
         #Call workflow action in applicationController
         surveyWorkflow
+
 
         #redirect_to :controller=>'questions',:action=>'new'
       else
@@ -84,17 +91,17 @@ class SurveysController < ApplicationController
     #end
   end
 
-  def updatetheme
-  	@survey = Survey.find(params[:id])
+#  def updatetheme
+#  	@survey = Survey.find(params[:id])
   	
-  	if @survey.update(survey_params)
-  		session[:survey_status] = "theme chosen"
+#  	if @survey.update(survey_params)
+#  		session[:survey_status] = "theme chosen"
   		
         #Call workflow action in applicationController
-        surveyWorkflow  
+#        surveyWorkflow  
           		
-  	end
-  end
+#  	end
+#  end
 
   # PATCH/PUT /surveys/1
   # PATCH/PUT /surveys/1.json
@@ -141,13 +148,14 @@ class SurveysController < ApplicationController
       @survey = Survey.find(params[:id])
       @question = Question.find_by(survey_id: @survey.id)
       @choices = Choice.find_by(question_id: @question.id)
+
       #session['question_id'] = @question.id
       #session['choice_id'] = @choices.id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.permit(:theme_id, :description, :name, 
+      params.require(:survey).permit(:theme_id, :description, :name,
       questions_attributes: [:id, :description, :type_id])
     end
 end

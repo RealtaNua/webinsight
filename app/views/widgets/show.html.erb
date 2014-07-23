@@ -1,0 +1,68 @@
+<link rel="stylesheet" type="text/css" href="/widget_resources/versable-widget-silver.css">
+
+	<div id="survey-widget-content">
+		<%= form_tag('/widgets/show', method: "GET") do %>
+		<div id="survey-widget-question">
+			<%= markdown(@question.description) %>
+		</div>
+				
+		<% if @question.choices.count > 1 %>
+			<% @question.choices.each do |choice| %>
+				
+				<% if(choice.next_action == "url") %>
+					<button class="survey-widget-choice" name="choice_id" value="<%=choice.id%>" onclick="window.open('<%= get_url(choice.next_action, choice.next_action_id) %>')">
+				<% else %>
+					<button class="survey-widget-choice" name="choice_id" value="<%=choice.id%>">					
+				<% end %>
+						<%= label_tag(:choice_description, choice.description) %>
+				</button>			
+			<% end %>
+		<% elsif @question.choices.count == 1 %>			
+			<div class="survey-widget-textfield">
+				<% @question.choices.each do |choice| %>
+					<%= hidden_field_tag(:choice_id, choice.id) %>
+				<% end %>
+				<input class="form-control" type="text" name="response_content" required></input>
+			</div>
+		<% end %>
+		
+		<% if @question.choices.count > 0 %>
+
+		<%= hidden_field_tag(:id, @survey.id) %>
+		<%= hidden_field_tag(:before_question_id, @question.id) %>		
+		<div class="survey-widget-choice survey-widget-button">
+			<% if @question.choices.count == 1 %>
+				<%= submit_tag("Next", "class" => 'pull-right btn btn-default') %>
+			<% end %>
+			<% if @question.before_question_id != 0 %>		
+				<%= link_to("Back", @widget_url_array[(session[:counter]) - 2], class: 'pull-right btn btn-default') %>
+			<% end %>
+		</div>
+		<% end %>
+		
+		<%= hidden_field_tag(:type_id, @question.type_id) %>		
+
+		<% end %>
+	</div>
+
+
+<script type="text/javascript">
+	var type_id_value = $("#type_id").val();
+		if (type_id_value == "3")
+	{
+		versable_timeout();
+	}
+	
+	function versable_timeout(timeout_in_milliseconds) {
+	
+		timeout_in_milliseconds = typeof timeout_in_milliseconds !== 'undefined' ? timeout_in_milliseconds : 2000;
+		
+		setTimeout(function(){
+  			$("#versable-widget-toggle", parent.document.body).trigger("click");
+		}, timeout_in_milliseconds);	
+	} 
+	
+//	$(".survey-widget-choice").click(function() {
+//		if this.val() == 
+//	});
+</script>
